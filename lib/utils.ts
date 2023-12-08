@@ -16,7 +16,7 @@ export const getRoomCode = async (): Promise<string> => {
         }),
         headers: {
           "Content-type": "application/json",
-          "x-api-key": process.env.NEXT_PUBLIC_API_KEY, // Replace 'YOUR_API_KEY_HERE' with your actual API key
+          "x-api-key": process.env.NEXT_PUBLIC_API_KEY, 
         },
       }
     );
