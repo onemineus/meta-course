@@ -25,3 +25,13 @@ export const getRoomCode = async (): Promise<string> => {
   }
   return "null";
 };
+
+export const formatDate = (date: Date): string => {
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: "long", // Full weekday name
+    month: "short", // Abbreviated month name
+    day: "numeric", // Numeric day of the month
+  };
+
+  return date.toLocaleDateString("en-US", options);
+};
