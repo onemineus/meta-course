@@ -5,8 +5,8 @@ import { PiGameControllerFill } from "react-icons/pi";
 import { useAtom } from "jotai";
 import { createTab, tab } from "@/jotai/atom";
 import { CalendarComponent } from "./calender";
-import { CoursesComponent } from "./course";
 import { Creation } from "./creation";
+import { CoursesComponent } from "./course";
 
 const Dashboard = () => {
   const [selectedTab, setSelectedTab] = useAtom(tab);

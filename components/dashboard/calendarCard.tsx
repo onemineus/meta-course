@@ -1,5 +1,11 @@
 "use client";
-
+import {
+  useConnect,
+  useEnsName,
+  useAccount,
+  useDisconnect,
+  useSignMessage,
+} from "wagmi";
 import {
   Dialog,
   DialogContent,
@@ -8,11 +14,17 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+
 import React from "react";
 import Image from "next/image";
 import { CgMenuRight } from "react-icons/cg";
+import { MdOutlineArrowOutward } from "react-icons/md";
+import { HuddleClient, HuddleProvider } from "@huddle01/react";
 
 export const CalendarCard = () => {
+
+ 
+
   return (
     <div className="flex w-full items-center justify-between rounded-lg bg-zinc-900 p-4">
       <div className="flex space-x-4">
@@ -65,14 +77,20 @@ export const CalendarCard = () => {
             <CgMenuRight size={30} />
           </div>
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent className="w-64">
           <DialogHeader>
-            <DialogTitle>Are you sure absolutely sure?</DialogTitle>
-            <DialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
-            </DialogDescription>
+            <DialogTitle>Course options</DialogTitle>
+            <DialogDescription>{/* <div>asdasd</div> */}</DialogDescription>
           </DialogHeader>
+          <div
+            className="flex cursor-pointer justify-between"
+            onClick={() => {}}
+          >
+            <div>Go to lobby</div>
+            <div>
+              <MdOutlineArrowOutward />
+            </div>
+          </div>
         </DialogContent>
       </Dialog>
     </div>

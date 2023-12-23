@@ -323,7 +323,7 @@ export const CoursesComponent = () => {
         </div>
       </div>
       {/* second section */}
-      <div className="h-full">
+      <div className="h-ful">
         {/* <div className="text-2xl capitalize my-4">your courses</div> */}
         <div className="flex h-full w-full flex-col space-y-4 overflow-y-auto rounded-xl bg-zinc-800 p-4 scrollbar-thin scrollbar-track-zinc-800 scrollbar-thumb-zinc-700">
           <div className="flex h-full w-full flex-col rounded-lg bg-zinc-900 pb-4 ">
