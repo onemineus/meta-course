@@ -5,10 +5,19 @@ import Image from "next/image";
 import { IoMdEye } from "react-icons/io";
 import { MdMenuOpen } from "react-icons/md";
 import { IoIosStar } from "react-icons/io";
+import { useRouter } from "next/navigation";
 
 export const CourseCard = () => {
+  // replace with real courseId
+  const courseId = "iuh23gj2hui3";
+  const router = useRouter();
   return (
-    <div className="flex w-72 flex-col items-center justify-between space-y-4 rounded-lg bg-zinc-800 p-4">
+    <div
+      onClick={() => {
+        router.push(`/course/${courseId}`);
+      }}
+      className="flex w-72 cursor-pointer flex-col items-center justify-between space-y-4 rounded-lg bg-zinc-800 p-4"
+    >
       <div className="flex flex-col space-y-4">
         <Image
           src={"/val.jpg"}
@@ -36,7 +45,12 @@ export const CourseCard = () => {
         </div>
       </div>
 
-      <div className="flex w-full items-center justify-center rounded-lg bg-zinc-500 bg-gradient-to-r from-[#296BBD] to-[#AC85FF]">
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+        className="flex w-full items-center justify-center rounded-lg bg-zinc-500 bg-gradient-to-r from-[#296BBD] to-[#AC85FF]"
+      >
         <MdMenuOpen size={30} />
       </div>
     </div>

@@ -34,52 +34,7 @@ export const CoursesComponent = () => {
     views: getRandomViews(),
     enrollment: getRandomEnrollment(),
   }));
-  const data2 = [
-    { name: "Group A", value: 65 },
-    { name: "Group B", value: 35 },
-  ];
-  const data3 = [
-    { name: "Group A", value: 400 },
-    { name: "Group B", value: 300 },
-  ];
-  // #296BBD
-  // #AC85FF
-  const COLORS = ["#AC85FF", "#296BBD"];
-  const RADIAN = Math.PI / 180;
 
-  const renderCustomizedLabel = ({
-    cx,
-    cy,
-    midAngle,
-    innerRadius,
-    outerRadius,
-    percent,
-    index,
-  }: {
-    cx: number;
-    cy: number;
-    midAngle: number;
-    innerRadius: number;
-    outerRadius: number;
-    percent: number;
-    index: number;
-  }) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-    return (
-      <text
-        x={x}
-        y={y}
-        fill="white"
-        textAnchor={x > cx ? "start" : "end"}
-        dominantBaseline="central"
-      >
-        {`${(percent * 100).toFixed(0)}%`}
-      </text>
-    );
-  };
 
   const CustomTooltip = ({
     active,

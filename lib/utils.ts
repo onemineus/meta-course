@@ -1,29 +1,32 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
- 
+import axios from "axios";
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 export const getRoomCode = async (): Promise<string> => {
-  if (process.env.NEXT_PUBLIC_API_KEY) {
-    const response = await fetch(
-      "https://api.huddle01.com/api/v1/create-room",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          title: "Huddle01-Test",
-        }),
-        headers: {
-          "Content-type": "application/json",
-          "x-api-key": process.env.NEXT_PUBLIC_API_KEY, 
-        },
-      }
-    );
-    const data = await response.json();
-    return data.data.roomId;
-  }
-  return "null";
+  const response = await axios.post(
+    "https://api.huddle01.com/api/v1/create-room",
+    {
+      title: "Test Meeting",
+      tokenType: "ERC1155",
+      chain: "POLYGON",
+      contractAddress: [
+        //add wallet addresses you want to add to meeting
+        "0x4432591D6d3722bE458e839779d715c0d74E8Bf7",
+      ],
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": "hOZKxff_0SML1Ew22dDSLMnI_dWa2JOh",
+      },
+    },
+  );
+  console.log(response.data.data.roomId);
+  return response.data.data.roomId;
 };
 
 export const formatDate = (date: Date): string => {

@@ -15,15 +15,38 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { CgMenuRight } from "react-icons/cg";
 import { MdOutlineArrowOutward } from "react-icons/md";
 import { HuddleClient, HuddleProvider } from "@huddle01/react";
+import { useRouter } from "next/navigation";
+import { getAccessToken, getMessage } from "@huddle01/auth";
+import { useAtom } from "jotai";
+import { accessToken, roomCode, test } from "@/jotai/atom";
+import { useStore } from "zustand";
 
 export const CalendarCard = () => {
+  const [accessTokenPrivate, setAccessTokenPrivate] = useAtom(accessToken);
+  const [roomCodePrivate, setRoomCodePrivate] = useAtom(roomCode);
 
- 
+  const [taste, setTaste] = useAtom(test);
+  const { signMessage } = useSignMessage({
+    onSuccess: async (data) => {
+      const token = await getAccessToken(data, address as string);
+      setAccessTokenPrivate(token.accessToken);
+    },
+  });
+
+  const router = useRouter();
+  const address = "0x4432591D6d3722bE458e839779d715c0d74E8Bf7";
+
+  useEffect(() => {
+    if (accessTokenPrivate !== "") {
+      console.log(accessTokenPrivate, roomCodePrivate);
+      router.push(`/live/${roomCodePrivate}`);
+    }
+  }, [accessTokenPrivate]);
 
   return (
     <div className="flex w-full items-center justify-between rounded-lg bg-zinc-900 p-4">
@@ -84,7 +107,11 @@ export const CalendarCard = () => {
           </DialogHeader>
           <div
             className="flex cursor-pointer justify-between"
-            onClick={() => {}}
+            onClick={() => {
+              // setRoomCodePrivate("hbf-vmvy-wnw");
+              // handleSignClick(getMessage, address, signMessage);
+              router.push(`/live/${"hbf-vmvy-wnw"}`);
+            }}
           >
             <div>Go to lobby</div>
             <div>
@@ -95,4 +122,13 @@ export const CalendarCard = () => {
       </Dialog>
     </div>
   );
+};
+
+export const handleSignClick = async (
+  getMessage: Function,
+  address: any,
+  signMessage: Function,
+) => {
+  const msg = await getMessage(address as string);
+  signMessage({ message: msg.message });
 };
