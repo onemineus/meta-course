@@ -167,16 +167,19 @@ const Page = () => {
             {/* left side */}
             <div className="flex h-full w-full flex-col space-y-4 bg-zinc-950 p-4">
               {/* upper line */}
-              <div className="h-full w-full overflow-auto rounded-xl bg-zinc-900 p-4">
-                <div className="flex h-full w-full justify-center overflow-hidden rounded-xl bg-red-900">
+              <div className="flex h-full w-full justify-center overflow-hidden rounded-xl bg-zinc-900 p-4">
+                <div className="flex h-full w-full shrink-0 justify-center rounded-xl bg-zinc-950">
                   {/* {peerIds.map((peerId) =>
                     peerId ? <RemotePeer key={peerId} peerId={peerId} /> : null,
                   )} */}
-                  <RemotePeer
-                    key={peerIds[0]}
-                    peerId={peerIds[0]}
-                    flag={true}
-                  />
+                  <div className="h-full w-min">
+                    <RemotePeer
+                      key={peerIds[0]}
+                      peerId={peerIds[0]}
+                      flag={true}
+                    />
+                  </div>
+
                   {/* <img
                     className="h-full w-full object-cover"
                     src="https://miro.medium.com/v2/resize:fit:798/1*tn5V9k-PnYFlvMo5ek-skw.jpeg"
@@ -192,7 +195,7 @@ const Page = () => {
                   <div className="relative aspect-video h-36">
                     <video
                       ref={videoRef}
-                      className="h-full w-full rounded-xl"
+                      className="h-full w-full rounded-xl outline outline-1 outline-zinc-500"
                       autoPlay
                       muted
                     />
@@ -201,7 +204,7 @@ const Page = () => {
                     </div>
                   </div>
                 ) : (
-                  <div className="relative flex aspect-video h-36 shrink-0 items-center justify-center rounded-xl bg-zinc-800">
+                  <div className="relative flex aspect-video h-36 shrink-0 items-center justify-center rounded-xl bg-zinc-800 outline outline-1 outline-zinc-500">
                     <div className="flex items-center">
                       <div className="text-zinc-500">
                         <IoVideocamOff size={30} />
@@ -225,85 +228,83 @@ const Page = () => {
           </div>
 
           {/* controls */}
-          <div className="bg-red-90 absolute bottom-0 flex w-full items-center justify-center p-4">
-            <div className="rounded-xl bg-zinc-800 p-4">
-              <div className="flex items-center justify-center space-x-4">
-                {isAudioOn ? (
-                  <div
-                    onClick={async () => {
-                      await disableAudio();
-                    }}
-                    className="flex aspect-square cursor-pointer items-center justify-center rounded-xl bg-zinc-200 p-2"
-                  >
-                    <BsMicFill size={20} color={"#296BBD"} />
-                  </div>
-                ) : (
-                  <div
-                    onClick={async () => {
-                      await enableAudio();
-                    }}
-                    className="flex aspect-square cursor-pointer items-center justify-center rounded-xl bg-red-500 p-2"
-                  >
-                    <BsMicMuteFill size={20} />
-                  </div>
-                )}
-                {isVideoOn ? (
-                  <div
-                    onClick={async () => {
-                      await disableVideo();
-                    }}
-                    className="flex aspect-square cursor-pointer items-center justify-center rounded-xl bg-zinc-200 p-2"
-                  >
-                    <IoVideocam size={20} color={"#296BBD"} />
-                  </div>
-                ) : (
-                  <div
-                    onClick={async () => {
-                      await enableVideo();
-                    }}
-                    className="flex aspect-square cursor-pointer items-center justify-center rounded-xl bg-red-500 p-2"
-                  >
-                    <IoVideocamOff size={20} />
-                  </div>
-                )}
-                {isScreenShareOn ? (
-                  <div
-                    onClick={async () => {
-                      await stopScreenShare();
-                      setIsScreenShareOn(false);
-                    }}
-                    className="flex aspect-square cursor-pointer items-center justify-center rounded-xl bg-zinc-200 p-2"
-                  >
-                    <MdOutlineScreenShare size={20} color={"#296BBD"} />
-                  </div>
-                ) : (
-                  <div
-                    onClick={async () => {
-                      await startScreenShare();
-                      setIsScreenShareOn(true);
-                    }}
-                    className="flex aspect-square cursor-pointer items-center justify-center rounded-xl bg-red-500 p-2"
-                  >
-                    <MdOutlineStopScreenShare size={20} />
-                  </div>
-                )}
-                <button
-                  onClick={async () => {
-                    console.log(params.roomCode as string, token);
-                    leaveRoom();
-                  }}
-                  className="flex h-9 cursor-pointer items-center justify-center whitespace-nowrap rounded-xl bg-[#296BBD] px-4 capitalize"
-                >
-                  Leave Meet
-                </button>
+          <div className="absolute bottom-4 shrink-0 self-center rounded-xl bg-zinc-800 p-4">
+            <div className="flex items-center justify-center space-x-4">
+              {isAudioOn ? (
                 <div
                   onClick={async () => {
                     await disableAudio();
                   }}
                   className="flex aspect-square cursor-pointer items-center justify-center rounded-xl bg-zinc-200 p-2"
                 >
-                  <RiMenu4Fill size={20} color={"#296BBD"} />
+                  <BsMicFill size={20} color={"#296BBD"} />
                 </div>
+              ) : (
+                <div
+                  onClick={async () => {
+                    await enableAudio();
+                  }}
+                  className="flex aspect-square cursor-pointer items-center justify-center rounded-xl bg-red-500 p-2"
+                >
+                  <BsMicMuteFill size={20} />
+                </div>
+              )}
+              {isVideoOn ? (
+                <div
+                  onClick={async () => {
+                    await disableVideo();
+                  }}
+                  className="flex aspect-square cursor-pointer items-center justify-center rounded-xl bg-zinc-200 p-2"
+                >
+                  <IoVideocam size={20} color={"#296BBD"} />
+                </div>
+              ) : (
+                <div
+                  onClick={async () => {
+                    await enableVideo();
+                  }}
+                  className="flex aspect-square cursor-pointer items-center justify-center rounded-xl bg-red-500 p-2"
+                >
+                  <IoVideocamOff size={20} />
+                </div>
+              )}
+              {isScreenShareOn ? (
+                <div
+                  onClick={async () => {
+                    await stopScreenShare();
+                    setIsScreenShareOn(false);
+                  }}
+                  className="flex aspect-square cursor-pointer items-center justify-center rounded-xl bg-zinc-200 p-2"
+                >
+                  <MdOutlineScreenShare size={20} color={"#296BBD"} />
+                </div>
+              ) : (
+                <div
+                  onClick={async () => {
+                    await startScreenShare();
+                    setIsScreenShareOn(true);
+                  }}
+                  className="flex aspect-square cursor-pointer items-center justify-center rounded-xl bg-red-500 p-2"
+                >
+                  <MdOutlineStopScreenShare size={20} />
+                </div>
+              )}
+              <button
+                onClick={async () => {
+                  console.log(params.roomCode as string, token);
+                  leaveRoom();
+                }}
+                className="flex h-9 cursor-pointer items-center justify-center whitespace-nowrap rounded-xl bg-[#296BBD] px-4 capitalize"
+              >
+                Leave Meet
+              </button>
+              <div
+                onClick={async () => {
+                  await disableAudio();
+                }}
+                className="flex aspect-square cursor-pointer items-center justify-center rounded-xl bg-zinc-200 p-2"
+              >
+                <RiMenu4Fill size={20} color={"#296BBD"} />
               </div>
             </div>
           </div>
@@ -451,8 +452,17 @@ const RemotePeer = ({ peerId, flag }: { peerId: string; flag: boolean }) => {
             </div>
           </div>
         ) : !isVideoOn && !screenVideo ? (
-          <div className="relative flex aspect-video h-full w-full items-center justify-center rounded-xl bg-zinc-800">
-            <div className="flex items-center">
+          // <div className="relative flex w-full items-center justify-center bg-zinc-800">
+          //   <div className="text-zinc-500">
+          //     <IoVideocamOff size={30} />
+          //   </div>
+          //   <div className="absolute bottom-0 left-0 m-2 rounded-full bg-zinc-900 px-2 capitalize text-zinc-200">
+          //     {metadata?.displayName}
+          //   </div>
+          // </div>
+          <div className="relative aspect-video h-full w-full bg-zinc-800">
+            <video ref={vidRef} className="h-full w-full" autoPlay muted />
+            <div className="absolute left-0 top-0 z-10 flex h-full w-full items-center justify-center">
               <div className="text-zinc-500">
                 <IoVideocamOff size={30} />
               </div>
@@ -465,24 +475,9 @@ const RemotePeer = ({ peerId, flag }: { peerId: string; flag: boolean }) => {
           <></>
         )}
         {screenVideo && (
-          <video
-            ref={screenVideoRef}
-            autoPlay
-            muted
-            className="aspect-video h-full"
-          />
-        )}
-        <audio ref={audioRef} autoPlay></audio>
-        {screenAudio && <audio ref={screenAudioRef} autoPlay></audio>}
-      </div>
-    );
-  } else {
-    return (
-      <div className="flex h-full w-full flex-row space-x-4">
-        {isVideoOn ? (
-          <div className="relative aspect-video h-36">
+          <div className="relative aspect-video h-full w-full">
             <video
-              ref={vidRef}
+              ref={screenVideoRef}
               className="h-full w-full rounded-xl"
               autoPlay
               muted
@@ -491,8 +486,28 @@ const RemotePeer = ({ peerId, flag }: { peerId: string; flag: boolean }) => {
               {metadata?.displayName}
             </div>
           </div>
+        )}
+        <audio ref={audioRef} autoPlay></audio>
+        {screenAudio && <audio ref={screenAudioRef} autoPlay></audio>}
+      </div>
+    );
+  } else {
+    return (
+      <div className="flex h-full flex-row space-x-4">
+        {isVideoOn ? (
+          <div className="relative aspect-video h-36 w-full">
+            <video
+              ref={vidRef}
+              className="h-full rounded-xl outline outline-1 outline-zinc-500"
+              autoPlay
+              muted
+            />
+            <div className="absolute bottom-0 left-0 m-2 rounded-full bg-zinc-900 px-2 capitalize text-zinc-200">
+              {metadata?.displayName}
+            </div>
+          </div>
         ) : (
-          <div className="relative flex aspect-video h-36 shrink-0 items-center justify-center rounded-xl bg-zinc-800">
+          <div className="relative flex aspect-video h-36 shrink-0 items-center justify-center rounded-xl bg-zinc-800 outline outline-1 outline-zinc-500">
             <div className="flex items-center">
               <div className="text-zinc-500">
                 <IoVideocamOff size={30} />
@@ -507,12 +522,17 @@ const RemotePeer = ({ peerId, flag }: { peerId: string; flag: boolean }) => {
         {/* <video ref={vidRef} autoPlay muted className="aspect-video" /> */}
 
         {screenVideo && (
-          <video
-            ref={screenVideoRef}
-            autoPlay
-            muted
-            className="aspect-video h-36 max-w-full rounded-xl"
-          />
+          <div className="relative aspect-video h-36 w-full">
+            <video
+              ref={screenVideoRef}
+              className="h-full rounded-xl outline outline-1 outline-zinc-500"
+              autoPlay
+              muted
+            />
+            <div className="absolute bottom-0 left-0 m-2 rounded-full bg-zinc-900 px-2 capitalize text-zinc-200">
+              {metadata?.displayName}
+            </div>
+          </div>
         )}
         <audio ref={audioRef} autoPlay></audio>
         {screenAudio && <audio ref={screenAudioRef} autoPlay></audio>}
