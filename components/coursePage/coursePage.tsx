@@ -31,7 +31,8 @@ import { formatDate, getRoomCode } from "@/lib/utils";
 import Image from "next/image";
 import { PacmanLoader } from "react-spinners";
 
-const Course = () => {
+const Course = ({ courseId }: { courseId: string }) => {
+  // fetch data via courseId
   const data = {
     courseName: "CSGO Advanced",
     courseTitle: "CSGO Cash Trade Advanced Course",
@@ -123,6 +124,7 @@ const Course = () => {
       }
     });
   };
+  // check if it is a live session or not
   const [isLiveSession, setIsLiveSession] = useState(true);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(
     new Date(),
@@ -160,8 +162,15 @@ const Course = () => {
       {/* body */}
       <div className="flex w-full flex-col bg-zinc-950 p-6">
         <div className="absolute left-0 top-0 h-screen w-full bg-blend-overlay">
-          <img
+          {/* <img
             src="./csgo.jpg"
+            alt=""
+            className="h-2/3 w-full object-cover opacity-20 bg-blend-darken"
+          /> */}
+          <Image
+            src={"/csgo.jpg"}
+            width={1000}
+            height={1000}
             alt=""
             className="h-2/3 w-full object-cover opacity-20 bg-blend-darken"
           />

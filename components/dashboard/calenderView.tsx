@@ -68,7 +68,7 @@ export const CalendarComponent = () => {
     }
   };
   return (
-    <div className="flex w-full flex-col overflow-auto rounded-xl bg-zinc-900 p-4 text-zinc-300 scrollbar-thin scrollbar-track-zinc-900 scrollbar-thumb-zinc-800">
+    <div className="flex w-full flex-col overflow-auto rounded-xl bg-zinc-900 p-2 text-zinc-300 scrollbar-thin scrollbar-track-zinc-900 scrollbar-thumb-zinc-800">
       <Tabs />
       {/* first section */}
       <div className="my-2 mb-4 text-2xl capitalize">calender meetings</div>

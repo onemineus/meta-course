@@ -8,7 +8,7 @@ import { CalendarComponent } from "./calenderView";
 import { Creation } from "./creation";
 import { CoursesComponent } from "./courseView";
 
-const Dashboard = () => {
+const Dashboard = ({ id }: { id: string }) => {
   const [selectedTab, setSelectedTab] = useAtom(tab);
   const [createdTab, setCreatedTab] = useAtom(createTab);
 

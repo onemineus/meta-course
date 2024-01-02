@@ -12,10 +12,19 @@ import {
   Legend,
   YAxis,
 } from "recharts";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Arvo } from "next/font/google";
 import { CourseCard } from "./courseCard";
 import { Tabs } from "./tabs";
+import Image from "next/image";
 
 const arvo = Arvo({ weight: ["400", "700"], subsets: ["latin"] });
 
@@ -34,7 +43,6 @@ export const CoursesComponent = () => {
     views: getRandomViews(),
     enrollment: getRandomEnrollment(),
   }));
-
 
   const CustomTooltip = ({
     active,
@@ -58,13 +66,13 @@ export const CoursesComponent = () => {
   };
   const percentage = 66;
   return (
-    <div className="flex w-full flex-col space-y-4 overflow-auto rounded-xl bg-zinc-900 p-4 text-zinc-300 scrollbar-thin scrollbar-track-zinc-900 scrollbar-thumb-zinc-800">
+    <div className="flex w-full flex-col space-y-4 overflow-auto rounded-xl bg-zinc-900 p-2 text-zinc-300 scrollbar-thin scrollbar-track-zinc-900 scrollbar-thumb-zinc-800">
       <Tabs />
       {/* first section */}
       {/* <div className="text-2xl capitalize my-2 mb-4">course analytics</div> */}
-      <div className="h- flex w-full shrink-0 flex-col space-y-4 rounded-xl bg-zinc-800 p-4 lg:flex-row lg:space-x-4 lg:space-y-0">
+      <div className="h- flex w-full shrink-0 flex-col space-y-4 rounded-xl bg-zinc-800 p-2 lg:flex-row lg:space-x-4 lg:space-y-0">
         {/* analytics */}
-        <div className="h-64 w-full shrink-0 rounded-lg bg-zinc-900 lg:h-96 lg:w-1/2">
+        <div className="h-64 w-full shrink-0 rounded-lg bg-zinc-950 lg:h-96 lg:w-1/2">
           <div className="p-6 text-2xl capitalize"> course engagements</div>
           <div className="h-40 lg:h-72">
             <ResponsiveContainer>
@@ -279,31 +287,57 @@ export const CoursesComponent = () => {
       </div>
       {/* second section */}
       <div className="h-ful">
-        {/* <div className="text-2xl capitalize my-4">your courses</div> */}
-        <div className="flex h-full w-full flex-col space-y-4 overflow-y-auto rounded-xl bg-zinc-800 p-4 scrollbar-thin scrollbar-track-zinc-800 scrollbar-thumb-zinc-700">
-          <div className="flex h-full w-full flex-col rounded-lg bg-zinc-900 pb-4 ">
-            <div className="p-6 text-2xl capitalize">your courses</div>
-            <div className="flex-co flex max-h-96 w-full shrink-0 space-x-4 overflow-y-auto px-4 pb-4 scrollbar-thin scrollbar-track-zinc-800 scrollbar-thumb-zinc-700 2xl:max-h-96">
-              {/* card */}
-              <CourseCard />
-              <CourseCard />
-              <CourseCard />
-              <CourseCard />
-              <CourseCard />
-              <CourseCard />
+        <div className="flex h-full w-full flex-col space-y-4 overflow-y-auto rounded-xl bg-zinc-800 p-2 scrollbar-thin scrollbar-track-zinc-800 scrollbar-thumb-zinc-700">
+          <div className="pb relative flex h-full w-full flex-col rounded-lg bg-zinc-900 ">
+            <Image
+              src={"/course-bg-1.svg"}
+              height={1000}
+              width={1000}
+              alt=""
+              className="absolute left-0 top-0 h-full w-full rounded-xl object-cover"
+            />
+            <div className="z-10 p-6 text-2xl capitalize text-zinc-50">
+              my courses
+            </div>
+
+            <div className="w-full rounded-b-xl bg-red-100 px-4 pb-4">
+              <Carousel className="w-full">
+                <CarouselContent className="">
+                  {Array.from({ length: 8 }).map((_, index) => (
+                    <CarouselItem className="basis-1/" key={index}>
+                      <CourseCard />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
             </div>
           </div>
-          <div className="flex h-full w-full flex-col rounded-lg bg-zinc-900 pb-4">
-            <div className="p-6 text-2xl capitalize">purchased courses</div>
-            <div className="flex-co flex max-h-96 w-full shrink-0 space-x-4 overflow-y-auto px-4 pb-4 scrollbar-thin scrollbar-track-zinc-800 scrollbar-thumb-zinc-700 2xl:max-h-96">
-              {/* card */}
-              <CourseCard />
-              <CourseCard />
-              <CourseCard />
-              <CourseCard />
-              <CourseCard />
-              <CourseCard />
-              <CourseCard />
+          <div className="pb relative flex h-full w-full flex-col rounded-lg bg-zinc-900 ">
+            <Image
+              src={"/course-bg-2.svg"}
+              height={1000}
+              width={1000}
+              alt=""
+              className="absolute left-0 top-0 h-full w-full rounded-xl object-cover"
+            />
+            <div className="z-10 p-6 text-2xl capitalize text-zinc-50">
+              my courses
+            </div>
+
+            <div className="w-full rounded-b-xl bg-red-100 px-4 pb-4">
+              <Carousel className="w-full">
+                <CarouselContent className="">
+                  {Array.from({ length: 8 }).map((_, index) => (
+                    <CarouselItem className="basis-1/" key={index}>
+                      <CourseCard />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
             </div>
           </div>
           {/* <div className="aspect-square bg-zinc-900 h-full flex rounded-lg">

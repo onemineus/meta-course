@@ -25,7 +25,7 @@ export const Tabs = () => {
     },
   ];
   return (
-    <div className="flex justify-between rounded-xl bg-zinc-800 p-3">
+    <div className="flex justify-between rounded-xl bg-zinc-800 p-2">
       <div className="flex items-center rounded-lg bg-zinc-900 p-1">
         {menuData.map((tab, index) => {
           return (
