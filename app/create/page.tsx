@@ -41,15 +41,15 @@ const CreateCourse = () => {
             {/* head */}
             <div className="flex flex-col space-y-2 p-8">
               <div className="text-sm text-zinc-400">{`Step ${1 + 0}/3`}</div>
-              <div className="text-3xl font-bold">Let's set up your course</div>
+              <div className="text-3xl font-bold">
+                Let&apos;s set up your course
+              </div>
               <div className="text-sm text-zinc-300">
                 Tell us more about your course so we can provide you a
                 personalized experience tailored to your preferences
               </div>
             </div>
-            {
-                
-            }
+            {}
             <div className="flex h-full flex-col space-y-8 overflow-y-auto px-8 pb-28 scrollbar-thin">
               {/* thumbnail */}
               <div className="flex flex-col space-y-2">
