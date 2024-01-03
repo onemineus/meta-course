@@ -135,7 +135,7 @@ const ProfileView = ({ id }: { id: string }) => {
                 })}
               </div>
             </div>
-            {tabList.map((tab) => tab.id === tabId && <tab.component />)}
+            {tabList.map((tab, index) => tab.id === tabId && <tab.component key={index} />)}
           </div>
         </div>
       </div>
@@ -265,7 +265,7 @@ const StarsComponent = ({ value }: { value: number }) => {
           length: value,
         }).map((_, index) => {
           return (
-            <div>
+            <div key={index}>
               <FaStar color={"#F7D800"} size={16} />
             </div>
           );
@@ -274,7 +274,7 @@ const StarsComponent = ({ value }: { value: number }) => {
           length: 5 - value,
         }).map((_, index) => {
           return (
-            <div>
+            <div key={index}>
               <FaRegStar size={16} />
             </div>
           );

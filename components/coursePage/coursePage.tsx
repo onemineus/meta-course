@@ -93,6 +93,8 @@ const Course = ({ courseId }: { courseId: string }) => {
     prerequisite:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est ad enim tempora assumenda ex qui deserunt. Perspiciatis repellendus porro vero architecto eius, veritatis, voluptas quo ex qui, rem facilis inventore.",
   };
+
+  
   const connectMetamask = async (): Promise<{
     provider: object;
     signer: object;

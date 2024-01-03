@@ -124,7 +124,7 @@ export const CourseCard = () => {
           </div>
           <div className="flex items-center space-x-1 pr-4 text-zinc-50">
             <HiOutlineBookOpen size={20} />
-            <div className="capitalize text-sm">3 lesson</div>
+            <div className="text-sm capitalize">3 lesson</div>
           </div>
         </div>
       </div>
@@ -140,7 +140,7 @@ const StarsComponent = ({ value }: { value: number }) => {
           length: value,
         }).map((_, index) => {
           return (
-            <div>
+            <div key={index}>
               <FaStar color={"#F7D800"} size={16} />
             </div>
           );
@@ -149,7 +149,7 @@ const StarsComponent = ({ value }: { value: number }) => {
           length: 5 - value,
         }).map((_, index) => {
           return (
-            <div>
+            <div key={index}>
               <FaRegStar size={16} />
             </div>
           );
