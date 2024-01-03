@@ -90,19 +90,45 @@ export const CalendarCard = () => {
                 <div className="text-sm">{"0xiasjdiausdai"}</div>
               </div>
             </div>
-            <div
-              onClick={() => {
-                // router.push(`/course/${courseId}`);
-              }}
-              className="flex cursor-pointer items-center space-x-1"
-            >
-              <div className="font-bol whitespace-nowrap capitalize text-zinc-50">
-                options
-              </div>
-              <div className="flex justify-center text-zinc-50">
-                <AiOutlineArrowRight size={20} />
-              </div>
-            </div>
+
+            <Dialog>
+              <DialogTrigger>
+                <div
+                  onClick={() => {
+                    // router.push(`/course/${courseId}`);
+                  }}
+                  className="flex cursor-pointer items-center space-x-1"
+                >
+                  <div className="font-bol whitespace-nowrap capitalize text-zinc-50">
+                    options
+                  </div>
+                  <div className="flex justify-center text-zinc-50">
+                    <AiOutlineArrowRight size={20} />
+                  </div>
+                </div>
+              </DialogTrigger>
+              <DialogContent className="w-64">
+                <DialogHeader>
+                  <DialogTitle>Course options</DialogTitle>
+                  <DialogDescription>
+                    {/* <div>asdasd</div> */}
+                  </DialogDescription>
+                </DialogHeader>
+                <div
+                  className="flex cursor-pointer justify-between"
+                  onClick={() => {
+                    // setRoomCodePrivate("hbf-vmvy-wnw");
+                    // handleSignClick(getMessage, address, signMessage);
+                    router.push(`/live/${"hbf-vmvy-wnw"}`);
+                  }}
+                >
+                  <div>Go to lobby</div>
+                  <div>
+                    <MdOutlineArrowOutward />
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </div>
